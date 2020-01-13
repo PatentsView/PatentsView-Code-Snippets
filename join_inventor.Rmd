@@ -3,12 +3,16 @@ title: "Merge Inventor, Location, and Patent Tables"
 output: html_document
 ---
 
+---
+### Note: This HTML document was last generated on `r Sys.Date()`
+---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "G:/PatentsView/misc_filecounts/" )
+knitr::opts_knit$set(root.dir = "TODO: ADD DIRECTORY PATH HERE" )
 ```
 
-
+## Load Patent Table
 ```{r, warning=FALSE}
 library(data.table)
 
@@ -20,6 +24,7 @@ head(patent)
 
 ```
 
+## Load Inventor and Location Tables
 ```{r, warning=FALSE}
 
 inventor <- fread("inventor.tsv")
@@ -33,6 +38,7 @@ head(location)
 
 ```
 
+## Load Raw Inventor and Raw Location Tables
 ```{r, warning=FALSE}
 rawinventor <- fread("rawinventor.tsv")
 rawlocation <- fread("rawlocation.tsv")
@@ -46,6 +52,7 @@ head(rawlocation)
 
 ```
 
+## Join Raw Location and Location Tables
 ```{r}
 merged_locations <- merge(rawlocation, location, by.x = c('location_id', 'city', 'state', 'country'), by.y = c('id','city', 'state', 'country'))
 ```
@@ -59,6 +66,7 @@ n_non_matches <- nrow(rawlocation) - nrow(merged_locations)
 
 The location table contains `r nrow(location)` rows while the rawlocation table contains `r nrow(rawlocation)`rows. Mergeing these tables results in a merged_locations table of `r nrow(merged_locations)` rows. Thus there are `r n_non_matches` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
 
+## Join Raw Inventor and Inventor Tables
 ```{r}
 # free up some memory 
 rm(location)
@@ -86,6 +94,7 @@ n_non_matches <- nrow(rawinventor) - nrow(merged_inventors)
 
 The inventor table contains `r nrow(inventor)` rows while the rawinventor table contains `r nrow(rawinventor)` rows. The resulting merged_inventors table contains `r nrow(merged_inventors)` rows. Thus there are`r n_non_matches` rows in the rawinventor table which do not contain matching inventor_ids, first names, and last names in the inventor table.
 
+## Join Merged_Inventors and Merged_Locations
 ```{r}
 # free up some memory
 rm(inventor)
@@ -115,6 +124,7 @@ rm(merged_locations)
 head(patent)
 ```
 
+## Join Inventor, Location, and Patent Data
 ```{r}
 complete_merge <- merge(patent, merged_inventor_location, by.x = c('patent_id'), by.y = c('patent_id'))
 ```

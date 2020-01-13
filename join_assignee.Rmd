@@ -2,14 +2,17 @@
 title: "Merge Assignee, Location, and Patent Tables"
 output: html_document
 ---
+#### Note: This HTML document was last generated on `r Sys.Date()`
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "G:/PatentsView/misc_filecounts/" )
+knitr::opts_knit$set(root.dir = "TODO: ADD DIRECTORY PATH HERE")
 
 library(data.table)
 ```
 
+## Load Patent Table
 ```{r, warning=FALSE }
 patent <- fread("G:/PatentsView/misc_filecounts/patent.tsv")
 colnames(patent)[colnames(patent)=="type"] <- "patent_type"
@@ -18,6 +21,7 @@ colnames(patent)[colnames(patent)=="id"] <- "patent_id"
 head(patent)
 ```
 
+## Load Assignee and Location Tables
 ```{r}
 assignee <- fread("assignee.tsv")
 location <- fread("location.tsv")
@@ -29,7 +33,7 @@ head(location)
 
 ```
 
-
+## Load Raw Location and Raw Assignee Tables
 ```{r, warning=FALSE}
 
 rawassignee <- fread("rawassignee.tsv")
@@ -41,6 +45,7 @@ head(rawassignee)
 head(rawlocation)
 ```
 
+## Join Raw Assignee and Assignee Tables
 ```{r}
 merged_assignees <- merge(rawassignee, assignee, by.x = c('assignee_id', 'type', 'name_first', 'name_last', 'organization'), by.y = c('id','type', 'name_first', 'name_last', 'organization'))
 ```
@@ -56,6 +61,7 @@ n_non_matches <- nrow(rawassignee) - nrow(merged_assignees)
 
 The assignee table contains `r nrow(assignee)` rows while the rawassignee table contains `r nrow(rawassignee)` rows. The merging of these tables results in a table with `r nrow(merged_assignees)` rows. Thus there are `r n_non_matches` rows in the rawassignee table which do not contain matches to the assignee table on the specified columns.
 
+## Join Raw Location and Location Tables
 ```{r}
 head(location)
 ```
@@ -65,13 +71,11 @@ colnames(rawlocation)[colnames(rawlocation)=="id"] <- "rawlocation_id"
 head(rawlocation)
 ```
 
+
 ```{r}
 merged_locations <- merge(rawlocation, location, by.x = c('location_id', 'city', 'state', 'country'), by.y = c('id','city', 'state', 'country'))
 ```
 
-```{r}
-head(merged_locations)
-```
 
 
 ```{r}
@@ -84,6 +88,7 @@ n_non_matches <- nrow(rawlocation) - nrow(merged_locations)
 
 The location table contains `r nrow(location)` rows while the rawlocation table contains `r nrow(rawlocation)`rows. Merging these tables results in a merged_locations table of `r nrow(merged_locations)` rows. Thus there are `r n_non_matches` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
 
+## Join Merged_Locations and Merged_Assignees
 ```{r}
 merged_assignee_location <- merge(merged_locations, merged_assignees, by.x = 'rawlocation_id', by.y = 'rawlocation_id')
 ```
@@ -93,6 +98,7 @@ colnames(merged_assignee_location)[colnames(merged_assignee_location)=="type"] <
 head(merged_assignee_location)
 ```
 
+## Join Assignee, Location, and Patent Data
 ```{r}
 
 head(patent)
