@@ -1,0 +1,126 @@
+---
+title: "Merge Inventor, Location, and Patent Tables"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "G:/PatentsView/misc_filecounts/" )
+```
+
+
+```{r, warning=FALSE}
+library(data.table)
+
+patent <- fread("patent.tsv")
+colnames(patent)[colnames(patent)=="type"] <- "patent_type"
+colnames(patent)[colnames(patent)=="country"] <- "patent_country"
+colnames(patent)[colnames(patent)=="id"] <- "patent_id"
+head(patent)
+
+```
+
+```{r, warning=FALSE}
+
+inventor <- fread("inventor.tsv")
+location <- fread("location.tsv")
+
+```
+
+```{r}
+head(inventor)
+head(location)
+
+```
+
+```{r, warning=FALSE}
+rawinventor <- fread("rawinventor.tsv")
+rawlocation <- fread("rawlocation.tsv")
+
+```
+
+```{r}
+head(rawinventor)
+colnames(rawlocation)[colnames(rawlocation)=="id"] <- "rawlocation_id"
+head(rawlocation)
+
+```
+
+```{r}
+merged_locations <- merge(rawlocation, location, by.x = c('location_id', 'city', 'state', 'country'), by.y = c('id','city', 'state', 'country'))
+```
+
+```{r}
+head(merged_locations)
+
+n_non_matches <- nrow(rawlocation) - nrow(merged_locations)
+```
+
+
+The location table contains `r nrow(location)` rows while the rawlocation table contains `r nrow(rawlocation)`rows. Mergeing these tables results in a merged_locations table of `r nrow(merged_locations)` rows. Thus there are `r n_non_matches` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
+
+```{r}
+# free up some memory 
+rm(location)
+rm(rawlocation)
+
+```
+
+```{r}
+head(inventor)
+```
+
+```{r}
+head(rawinventor)
+```
+
+```{r}
+merged_inventors <- merge(rawinventor, inventor, by.x = c('inventor_id', 'name_first', 'name_last'), by.y = c('id', 'name_first', 'name_last'))
+```
+
+```{r}
+
+head(merged_inventors)
+n_non_matches <- nrow(rawinventor) - nrow(merged_inventors)
+```
+
+The inventor table contains `r nrow(inventor)` rows while the rawinventor table contains `r nrow(rawinventor)` rows. The resulting merged_inventors table contains `r nrow(merged_inventors)` rows. Thus there are`r n_non_matches` rows in the rawinventor table which do not contain matching inventor_ids, first names, and last names in the inventor table.
+
+```{r}
+# free up some memory
+rm(inventor)
+rm(rawinventor)
+```
+
+```{r}
+merged_inventor_location <- merge(merged_inventors, merged_locations, by.x = 'rawlocation_id', by.y = 'rawlocation_id')
+```
+
+
+```{r}
+head(merged_inventor_location)
+n_non_matches <- nrow(merged_inventor_location) - nrow(merged_inventors)
+```
+
+The merged_locations table contains `r nrow(merged_location)` rows, while the merged_inventors table contains`r nrow(merged_inventors)` rows. The resulting merge of these to tables contains `r nrow(merged_inventor_location)` rows. Thus, there are `r n_non_matches` rows in the merged_locations table that are not matched by rawlocation_id in the merged_inventors table.
+
+```{r}
+rm(merged_inventors)
+rm(merged_locations)
+
+```
+
+
+```{r}
+head(patent)
+```
+
+```{r}
+complete_merge <- merge(patent, merged_inventor_location, by.x = c('patent_id'), by.y = c('patent_id'))
+```
+
+```{r}
+head(complete_merge)
+```
+
+The merged_inventor_location table contains `r nrow(merged_inventor_location)` rows and the patent table contains `r nrow(patent)` rows. The complete_merge contains  `r nrow(complete_merge)` rows. Thus, all of the patent_ids in the merged_inventor_location table have matches in the patent table.
