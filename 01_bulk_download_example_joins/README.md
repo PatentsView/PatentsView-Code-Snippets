@@ -4,9 +4,9 @@ The code scripts in this folder walk through the joining of various bulk downloa
 
 | Script             | Description           | 
 | ---    			 |---					 |
-| join_assignee.Rmd  | *Describes joining of\n assignee, location, and patent tables*|
+| join_assignee.Rmd  | *Describes joining of assignee, location, and patent tables*|
 | join_assignee.html |	*HTML version of join_assignee.Rmd*|
-| join_inventor.Rmd  | *Describes joining of\n inventor, location, and patent tables*|
+| join_inventor.Rmd  | *Describes joining of inventor, location, and patent tables*|
 | join_inventor.html | *HTML version of join_inventor.Rmd*|		 
 
 Note: 
