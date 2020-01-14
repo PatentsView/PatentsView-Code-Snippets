@@ -3,12 +3,12 @@ title: "Merge Inventor, Location, and Patent Tables"
 output: html_document
 ---
 
-### Note: This HTML document was last generated on `r Sys.Date()`
+#### Note: This HTML document was last generated on `r Sys.Date()`
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "TODO: ADD DIRECTORY PATH HERE")
+knitr::opts_knit$set(root.dir = "TODO: Add Directory Path Here")
 
 library(data.table)
 library(scales)
@@ -64,7 +64,7 @@ n_non_matches <- nrow(rawlocation) - nrow(merged_locations)
 ```
 
 
-The location table contains `r comma_format()(nrow(location))` rows while the rawlocation table contains `r comma_format()(nrow(rawlocation))`rows. Merging these tables results in a merged_locations table of `r nrow(merged_locations)` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
+The location table contains `r comma_format()(nrow(location))` rows while the rawlocation table contains `r comma_format()(nrow(rawlocation))` rows. Merging these tables results in a merged_locations table of `r comma_format()(nrow(merged_locations))` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
 
 ## Join Raw Inventor and Inventor Tables
 ```{r}
@@ -92,7 +92,7 @@ head(merged_inventors)
 n_non_matches <- nrow(rawinventor) - nrow(merged_inventors)
 ```
 
-The inventor table contains `r comma_format()(nrow(inventor))` rows while the rawinventor table contains `r comma_format()(nrow(rawinventor))` rows. The resulting merged_inventors table contains `r nrow(merged_inventors)` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawinventor table which do not contain matching inventor_ids, first names, and last names in the inventor table.
+The inventor table contains `r comma_format()(nrow(inventor))` rows while the rawinventor table contains `r comma_format()(nrow(rawinventor))` rows. The resulting merged_inventors table contains `r comma_format()(nrow(merged_inventors))` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawinventor table which do not contain matching inventor_ids, first names, and last names in the inventor table.
 
 ## Join Merged_Inventors and Merged_Locations
 ```{r}
@@ -133,4 +133,4 @@ complete_merge <- merge(patent, merged_inventor_location, by.x = c('patent_id'),
 head(complete_merge)
 ```
 
-The merged_inventor_location table contains `r comma_format()(nrow(merged_inventor_location))` rows and the patent table contains `r comma_format()(nrow(patent))` rows. The complete_merge contains  `r comma_format()(nrow(complete_merge))` rows. Thus, all of the patent_ids in the merged_inventor_location table have matches in the patent table.
+The merged_inventor_location table contains `r comma_format()(nrow(merged_inventor_location))` rows and the patent table contains `r comma_format()(nrow(patent))` rows. The complete_merge contains `r comma_format()(nrow(complete_merge))` rows. Thus, all of the patent_ids in the merged_inventor_location table have matches in the patent table.

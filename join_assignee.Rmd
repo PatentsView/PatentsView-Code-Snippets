@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "TODO: ADD DIRECTORY PATH HERE")
+knitr::opts_knit$set(root.dir = "TODO: Add Directory Path Here")
 
 library(data.table)
 library(scales)
@@ -60,7 +60,7 @@ n_non_matches <- nrow(rawassignee) - nrow(merged_assignees)
 
 ```
 
-The assignee table contains `r comma_format()(nrow(assignee))` rows while the rawassignee table contains `r comma_format()(nrow(rawassignee))` rows. The merging of these tables results in a table with `r nrow(merged_assignees)` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawassignee table which do not contain matches to the assignee table on the specified columns.
+The assignee table contains `r comma_format()(nrow(assignee))` rows while the rawassignee table contains `r comma_format()(nrow(rawassignee))` rows. The merging of these tables results in a table with `r comma_format()(nrow(merged_assignees))` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawassignee table which do not contain matches to the assignee table on the specified columns.
 
 ## Join Raw Location and Location Tables
 ```{r}
@@ -120,5 +120,5 @@ complete_merge <- merge(patent, merged_assignee_location, by.x = 'patent_id', by
 head(complete_merge)
 ```
 
-The merged_assignee_location table contains `r comma_format()(nrow(merged_assignee_location))` rows and the patent table contains `r comma_format()(nrow(patent))`. The complete_merge contains `r comma_format()(nrow(complete_merge))` rows. Thus, all of the patent_ids in the merged_assignee_location table have matches in the patent table.
+The merged_assignee_location table contains `r comma_format()(nrow(merged_assignee_location))` rows and the patent table contains `r comma_format()(nrow(patent))` rows. The complete_merge contains `r comma_format()(nrow(complete_merge))` rows. Thus, all of the patent_ids in the merged_assignee_location table have matches in the patent table.
 
