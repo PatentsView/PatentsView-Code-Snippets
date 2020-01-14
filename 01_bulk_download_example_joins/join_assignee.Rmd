@@ -1,0 +1,124 @@
+---
+title: "Merge Assignee, Location, and Patent Tables"
+output: html_document
+---
+#### Note: This HTML document was last generated on `r Sys.Date()`
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "TODO: Add Directory Path Here")
+
+library(data.table)
+library(scales)
+```
+
+## Load Patent Table
+```{r, warning=FALSE }
+patent <- fread("patent.tsv")
+colnames(patent)[colnames(patent)=="type"] <- "patent_type"
+colnames(patent)[colnames(patent)=="country"] <- "patent_country"
+colnames(patent)[colnames(patent)=="id"] <- "patent_id"
+head(patent)
+```
+
+## Load Assignee and Location Tables
+```{r}
+assignee <- fread("assignee.tsv")
+location <- fread("location.tsv")
+
+```
+```{r}
+head(assignee)
+head(location)
+
+```
+
+## Load Raw Location and Raw Assignee Tables
+```{r, warning=FALSE}
+
+rawassignee <- fread("rawassignee.tsv")
+rawlocation <- fread("rawlocation.tsv")
+
+```
+```{r}
+head(rawassignee)
+head(rawlocation)
+```
+
+## Join Raw Assignee and Assignee Tables
+```{r}
+merged_assignees <- merge(rawassignee, assignee, by.x = c('assignee_id', 'type', 'name_first', 'name_last', 'organization'), by.y = c('id','type', 'name_first', 'name_last', 'organization'))
+```
+
+```{r}
+colnames(merged_assignees)[colnames(merged_assignees)=="type"] <- "assignee_type"
+
+head(merged_assignees)
+
+n_non_matches <- nrow(rawassignee) - nrow(merged_assignees)
+
+```
+
+The assignee table contains `r comma_format()(nrow(assignee))` rows while the rawassignee table contains `r comma_format()(nrow(rawassignee))` rows. The merging of these tables results in a table with `r comma_format()(nrow(merged_assignees))` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawassignee table which do not contain matches to the assignee table on the specified columns.
+
+## Join Raw Location and Location Tables
+```{r}
+head(location)
+```
+
+```{r}
+colnames(rawlocation)[colnames(rawlocation)=="id"] <- "rawlocation_id"
+head(rawlocation)
+```
+
+
+```{r}
+merged_locations <- merge(rawlocation, location, by.x = c('location_id', 'city', 'state', 'country'), by.y = c('id','city', 'state', 'country'))
+```
+
+
+
+```{r}
+head(merged_locations)
+
+n_non_matches <- nrow(rawlocation) - nrow(merged_locations)
+
+```
+
+
+The location table contains `r comma_format()(nrow(location))` rows while the rawlocation table contains `r comma_format()(nrow(rawlocation))`rows. Merging these tables results in a merged_locations table of `r comma_format()(nrow(merged_locations))` rows. Thus there are `r comma_format()(n_non_matches)` rows in the rawlocation table which do not have a matching location_id, city, state, and country in the location table.
+
+## Join Merged_Locations and Merged_Assignees
+```{r}
+merged_assignee_location <- merge(merged_locations, merged_assignees, by.x = 'rawlocation_id', by.y = 'rawlocation_id')
+```
+
+```{r}
+colnames(merged_assignee_location)[colnames(merged_assignee_location)=="type"] <- "assignee_type"
+head(merged_assignee_location)
+```
+
+## Join Assignee, Location, and Patent Data
+```{r}
+
+head(patent)
+```
+
+```{r}
+# free up some memory for final merge
+rm(rawassignee)
+rm(rawlocation)
+rm(assignee)
+rm(location)
+rm(merged_locations)
+
+complete_merge <- merge(patent, merged_assignee_location, by.x = 'patent_id', by.y = 'patent_id' )
+```
+
+```{r}
+head(complete_merge)
+```
+
+The merged_assignee_location table contains `r comma_format()(nrow(merged_assignee_location))` rows and the patent table contains `r comma_format()(nrow(patent))` rows. The complete_merge contains `r comma_format()(nrow(complete_merge))` rows. Thus, all of the patent_ids in the merged_assignee_location table have matches in the patent table.
+
