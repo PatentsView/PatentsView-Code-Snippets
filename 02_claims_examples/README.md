@@ -1,7 +1,8 @@
 # Claims Parsing Settings
-## Type 1: Claims for patents granted from 2004 and later
-| Setting         | Value             |
-|-----------------|-------------------|
-| Delimited       | Tab (\t)         |
-| Quote Character | "                 |
-| Quote Setting   | Quote Non Numeric |
+
+| Setting         | Value                                                                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Delimited       | Tab (\t)                                                                                                                              |
+| Quote Character | "                                                                                                                                      |
+| Quote Setting   | Quote Non Numeric                                                                                                                      |
+| Python Example  | [Example Code on GitHub](https://github.com/CSSIP-AIR/PatentsView-Code-Snippets/blob/master/02_claims_examples/Claims%20Example.ipynb) |
