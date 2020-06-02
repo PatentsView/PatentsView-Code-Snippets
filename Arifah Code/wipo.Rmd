@@ -1,0 +1,19 @@
+---
+title: "Read-in script for WIPO technology fields for all "
+output: html_document
+---
+```{r}
+library(data.table)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+```{r}
+setwd("")
+data <- read.table(unz("wipo.zip", "wipo.tsv"), sep = '\t', header = TRUE)
+```
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+```{r}
+nrow(data)
+summary(data)
+```
