@@ -14,7 +14,6 @@ zf = zip.ZipFile(file_name)
 chunksize = 15*(10 ** 5)
 count = 1
 n_obs = 0
-dtype={'sequence': int}
 for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize):
     print('processing chunk: ' + str(count))
     n_obs += len(df)

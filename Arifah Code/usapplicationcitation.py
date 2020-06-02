@@ -1,4 +1,4 @@
-#Read-in script for Citations made to foreign patents by US patents
+#Read-in script for Citations made to US patent applications by US patents
 
 # Importing necessary packages.
 import os
@@ -8,8 +8,8 @@ import pandas as pd
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 # Selecting the zip file.
-file_name = "foreigncitation.tsv.zip"
-f_name = "foreigncitation.tsv"
+file_name = "usapplicationcitation.tsv.zip"
+f_name = "usapplicationcitation.tsv"
 zf = zip.ZipFile(file_name)
 chunksize = 15*(10 ** 5)
 count = 1

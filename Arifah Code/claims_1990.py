@@ -1,4 +1,4 @@
-#Read-in script for Lookup table of WIPO technology fields
+#Read-in script for 1990 Claims Data
 
 # Importing necessary packages.
 import os
@@ -7,8 +7,8 @@ import pandas as pd
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
-file_name = "wipo_field.tsv.zip"
-f_name = "wipo_field.tsv"
+file_name = "claims_1990.tsv.zip"
+f_name = "claims_1990.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
@@ -18,6 +18,8 @@ print(df.head())
 # Print summary of data: number of columns, observations, and each variable data type
 print(len(df))
 df.info()
+# Print basic summary statistics for numerical variables
+print(df.describe(df.select_dtypes(include='int')))
 
 
 

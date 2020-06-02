@@ -1,5 +1,5 @@
 ---
-title: "Read-in script for WIPO technology fields for all "
+title: "Read-in script for 1978 Claims Data"
 output: html_document
 ---
 ```{r}
@@ -8,10 +8,9 @@ library(data.table)
 
 ## Load patent file
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
-Note: It might take some time to read the file due to the size of the file.
 ```{r}
 setwd("")
-data <- read.table(unz("wipo.tsv.zip", "wipo.tsv"), sep = '\t', header = TRUE)
+data <- read.table(unz("claims_1978.tsv.zip", "claims_1978.tsv"), sep = '\t', header = TRUE)
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}

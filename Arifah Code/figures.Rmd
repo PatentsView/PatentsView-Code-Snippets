@@ -1,5 +1,5 @@
 ---
-title: "Read-in script forNumber of figures and sheets"
+title: "Read-in script for Number of figures and sheets"
 output: html_document
 ---
 ```{r}

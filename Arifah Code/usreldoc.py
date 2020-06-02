@@ -1,4 +1,4 @@
-#Read-in script for Citations made to foreign patents by US patents
+#Read-in script for U.S. related documents (post-2005 patents only)
 
 # Importing necessary packages.
 import os
@@ -8,10 +8,10 @@ import pandas as pd
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 # Selecting the zip file.
-file_name = "foreigncitation.tsv.zip"
-f_name = "foreigncitation.tsv"
+file_name = "usreldoc.tsv.zip"
+f_name = "usreldoc.tsv"
 zf = zip.ZipFile(file_name)
-chunksize = 15*(10 ** 5)
+chunksize = 10 ** 6
 count = 1
 n_obs = 0
 for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize):
@@ -21,3 +21,6 @@ for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize):
 # Print summary of data: number of observations, columns, and each variable data type
 print(n_obs)
 print(df.dtypes)
+
+
+
