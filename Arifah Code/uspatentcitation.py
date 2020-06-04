@@ -1,4 +1,4 @@
-#Read-in script for U.S. related documents (post-2005 patents only)
+#Read-in script for Citations made to US granted patents by US patents
 
 # Importing necessary packages.
 import os
