@@ -1,0 +1,30 @@
+---
+  title: "Merge Assignee, Location, and Patent Tables"
+output: html_document
+---
+  #### Note: This HTML document was last generated on `r Sys.Date()`
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+#TODO: change directory as needed
+setwd("//dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+```
+##Loads in data
+
+```{r load data}
+data<- read.delim(unz("otherreference.tsv.zip", "otherreference.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+```
+
+## displays summary of data
+
+```{r view data}
+head(data)
+nrow(data)
+ncol(data)
+str(data)
+summary(data)
+missing<-sapply(data, function(x) sum(is.na(x)))
+#View(missing)
+
+```

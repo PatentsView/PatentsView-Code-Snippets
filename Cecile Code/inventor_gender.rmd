@@ -1,0 +1,34 @@
+---
+title: "Assignee.tsv read-in and summary"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+#TODO: change directory as necessary
+setwd("//dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+```
+
+
+```{r load data}
+data<- read.delim(unz("inventor_gender.tsv.zip", "inventor_gender.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r view data}
+head(data)
+nrow(data)
+ncol(data)
+str(data)
+summary(data)
+missing<-sapply(data, function(x) sum(is.na(x)))
+#View(missing)
+#View(data)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
