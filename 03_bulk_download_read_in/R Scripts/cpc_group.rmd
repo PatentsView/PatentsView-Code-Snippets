@@ -1,0 +1,29 @@
+---
+title: "read in application.tsv and summarize"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+#TODO: change directory as needed
+setwd("//dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+```
+
+##Loads in data
+```{r load data}
+data<- read.delim(unz("cpc_group.tsv.zip", "cpc_group.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
+```
+
+## Displays summary of data file
+
+```{r view data}
+head(data)
+nrow(data)
+ncol(data)
+str(data)
+sumaary(data)
+missing<-sapply(data, function(x) sum(is.na(x)))
+#View(missing)
+
+```

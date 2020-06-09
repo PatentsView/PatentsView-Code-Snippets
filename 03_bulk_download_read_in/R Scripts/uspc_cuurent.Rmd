@@ -1,0 +1,20 @@
+---
+title: "Read-in script for Current USPC classification data for all patents up to May 2015"
+output: html_document
+---
+```{r}
+library(data.table)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+Note: It might take some time to read the file due to the size of the file.
+```{r}
+setwd("")
+data <- read.table(unz("uspc_current.tsv.zip", "uspc_current.tsv"), sep = '\t', header = TRUE)
+```
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+```{r}
+nrow(data)
+summary(data)
+```

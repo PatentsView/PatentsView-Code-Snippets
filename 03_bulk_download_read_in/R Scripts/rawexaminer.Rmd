@@ -1,0 +1,20 @@
+---
+title: "Read-in script for Raw examiner information"
+output: html_document
+---
+```{r}
+library(data.table)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+Note: Reading the file will take some time due to the size of the file.
+```{r}
+setwd("")
+data <- read.table(unz("rawexaminer.tsv.zip", "rawexaminer.tsv"), sep = '\t', header = TRUE)
+```
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+```{r}
+nrow(data)
+summary(data)
+```
