@@ -1,0 +1,36 @@
+---
+title: "Citations made to US granted patents by US patents"
+output: html_document
+---
+```{r}
+library(data.table)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+Note: it might take some time to read the file due to its size.
+```{r}
+start_time <- Sys.time()
+directory = ""
+setwd(directory)
+chunk <- 1000000
+count = 0
+n_obs = 0
+repeat{
+  data <- fread("usapplicationcitation.tsv", sep = '\t', nrows =  chunk, skip = chunk*count,  header = TRUE)
+  n_obs = n_obs + nrow(data)
+  count = count + 1
+  if (nrow(data) < chunk) {
+    break
+}
+}
+end_time <- Sys.time()
+print(end_time-start_time)
+```
+
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+```{r}
+data <- fread(paste(directory,"/usapplicationcitation.tsv", sep = "", collapse = NULL), sep = '\t', nrows =  1000000, skip = 0,  header = TRUE)
+print(n_obs)
+sapply(data, class)
+```
