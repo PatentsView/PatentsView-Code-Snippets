@@ -43,7 +43,7 @@ Necessary Packages:
 | location_inventor | *In Progress* |
 | mainclass | *Available* |
 | mainclass_current | *Available* |
-| nber | Available** |
+| nber | *Available* |
 | nber_category | *Available* |
 | nber_subcategory | *Available* |
 | non_inventor_applicant | *Available* |

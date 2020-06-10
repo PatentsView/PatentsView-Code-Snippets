@@ -57,7 +57,7 @@ Necessary Packages:
 | patent_lawyer | *Available* |
 | pct_data | *Available* |
 | persistent_assignee_disambig | *Available* |
-| persistent_inventor_disambig | **Available |
+| persistent_inventor_disambig | *Available* |
 | rawassignee | *Available* |
 | rawexaminer | *Available* |
 | rawinventor | *Available* |
