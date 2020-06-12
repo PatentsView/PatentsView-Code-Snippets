@@ -6,6 +6,7 @@ import zipfile as zip
 import pandas as pd
 import csv
 import numpy as np
+pd.set_option('display.max_columns', None)
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")

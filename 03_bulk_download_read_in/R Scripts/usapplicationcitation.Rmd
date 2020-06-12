@@ -17,7 +17,7 @@ chunk <- 1000000
 count = 0
 n_obs = 0
 repeat{
-  data <- fread("usapplicationcitation.tsv", sep = '\t', quote = "\"'", nrows =  chunk, skip = chunk*count,  header = TRUE)
+  data <- fread("usapplicationcitation.tsv", sep = '\t', quote = "\"", nrows =  chunk, skip = chunk*count,  header = TRUE)
   n_obs = n_obs + nrow(data)
   count = count + 1
   if (nrow(data) < chunk) {
@@ -28,9 +28,9 @@ end_time <- Sys.time()
 print(end_time-start_time)
 ```
 
-## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+## Print information on the dataset: Number of observations, column variables, data type for each variable
 ```{r}
-data <- fread(paste(directory,"/usapplicationcitation.tsv", sep = "", collapse = NULL), sep = '\t', nrows =  1000000, skip = 0,  header = TRUE)
+data <- fread(paste(directory,"/usapplicationcitation.tsv", sep = "", collapse = NULL), sep = '\t', quote = "\"", nrows =  1000000, skip = 0,  header = TRUE)
 print(n_obs)
 sapply(data, class)
 ```
