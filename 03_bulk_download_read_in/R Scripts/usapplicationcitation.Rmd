@@ -7,7 +7,7 @@ library(data.table)
 ```
 
 ## Load patent file
-Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+Please unzip the file and include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 Note: it might take some time to read the file due to its size.
 ```{r}
 start_time <- Sys.time()
@@ -17,7 +17,7 @@ chunk <- 1000000
 count = 0
 n_obs = 0
 repeat{
-  data <- fread("usapplicationcitation.tsv", sep = '\t', nrows =  chunk, skip = chunk*count,  header = TRUE)
+  data <- fread("usapplicationcitation.tsv", sep = '\t', quote = "\"'", nrows =  chunk, skip = chunk*count,  header = TRUE)
   n_obs = n_obs + nrow(data)
   count = count + 1
   if (nrow(data) < chunk) {

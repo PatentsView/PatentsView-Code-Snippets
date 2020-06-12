@@ -10,7 +10,7 @@ library(data.table)
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
 setwd("")
-data <- read.table(unz("pct_data.tsv.zip", "pct_data.tsv"), sep = '\t', header = TRUE)
+data <- read.table(unz("pct_data.tsv.zip", "pct_data.tsv"), sep = '\t', quote = "\"'", header = TRUE)
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}

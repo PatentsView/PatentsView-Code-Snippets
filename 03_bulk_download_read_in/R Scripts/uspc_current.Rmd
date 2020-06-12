@@ -11,7 +11,7 @@ Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downlo
 Note: It might take some time to read the file due to the size of the file.
 ```{r}
 setwd("")
-data <- read.table(unz("uspc_current.tsv.zip", "uspc_current.tsv"), sep = '\t', header = TRUE)
+data <- read.table(unz("uspc_current.tsv.zip", "uspc_current.tsv"), sep = '\t', quote = "\"'", header = TRUE)
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}
