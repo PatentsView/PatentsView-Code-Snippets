@@ -6,18 +6,23 @@ output: html_document
 library(data.table)
 ```
 
-## Load patent file
-Please unzip the file and include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
-Note: it might take more than 30 minutes to read the file due to its size.
+## Setting up directory and unzipping file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
-start_time <- Sys.time()
 directory = ""
 setwd(directory)
+unzip("uspatentcitation.tsv.zip", exdir = directory)
+```
+
+## Load patent file
+Note: it might take some time to read the file due to its size.
+```{r}
+start_time <- Sys.time()
 chunk <- 1000000
 count = 0
 n_obs = 0
 repeat{
-  data <- fread("uspatentcitation.tsv", sep = '\t', quote = "\"'", nrows =  chunk, skip = chunk*count,  header = TRUE)
+  data <- fread(paste(directory,"/uspatentcitation.tsv", sep = "", collapse = NULL), sep = '\t', quote = "\"", nrows =  chunk, skip = chunk*count,  header = TRUE)
   n_obs = n_obs + nrow(data)
   count = count + 1
   if (nrow(data) < chunk) {

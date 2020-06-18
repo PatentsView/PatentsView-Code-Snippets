@@ -2,6 +2,7 @@
 title: "Read-in script for Number of figures and sheets"
 output: html_document
 ---
+## Load necessary packages
 ```{r}
 library(data.table)
 ```
@@ -10,10 +11,12 @@ library(data.table)
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
 setwd("")
-data <- read.table(unz("figures.tsv.zip", "figures.tsv"), sep = '\t', quote = "\"'", header = TRUE)
+data <- read.delim(unz("figures.tsv.zip", "figures.tsv"), header = TRUE, comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE, na.strings = "")
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}
+head(data)
+ncol(data)
 nrow(data)
-summary(data)
+summary(data, na.rm=TRUE)
 ```

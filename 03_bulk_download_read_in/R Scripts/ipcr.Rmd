@@ -4,6 +4,7 @@ output: html_document
 ---
 ```{r}
 library(data.table)
+library(dplyr)
 ```
 
 ## Load patent file
@@ -11,10 +12,15 @@ Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downlo
 Note: Reading the file will take some time due to the size of the file.
 ```{r}
 setwd("")
-data <- read.table(unz("ipcr.tsv.zip", "ipcr.tsv"), sep = '\t', quote = "\"'", header = TRUE)
+data <- read.delim(unz("ipcr.tsv.zip", "ipcr.tsv"), header = TRUE, comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE, na.strings = "")
 ```
-## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and number of distinct values for non-numeric variables.
 ```{r}
+head(data)
+ncol(data)
 nrow(data)
-summary(data)
+apply(data, 2, function(x) length(which(!is.na(x))))
+print(apply(data, 2, class))
+var <- data[,!sapply(data,is.numeric)]
+summarize_each(var, funs(n_distinct(., na.rm=TRUE)))
 ```

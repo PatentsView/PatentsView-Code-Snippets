@@ -9,7 +9,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
-os.chdir("")
+os.chdir("//Dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
 file_name = "foreign_priority.tsv.zip"
 f_name = "foreign_priority.tsv"
 # Selecting the zip file.

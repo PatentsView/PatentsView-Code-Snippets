@@ -12,7 +12,7 @@ library(dplyr)
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
 setwd("")
-data <- read.delim(unz("foreign_priority.tsv.zip", "foreign_priority.tsv"), header = TRUE, quote="\"", na.strings = "")
+data <- read.delim(unz("foreign_priority.tsv.zip", "foreign_priority.tsv"), header = TRUE, comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE, na.strings = "")
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}
