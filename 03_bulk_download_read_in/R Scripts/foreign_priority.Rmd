@@ -2,18 +2,25 @@
 title: "Read-in script for Foreign priority data"
 output: html_document
 ---
+## Load necessary packages
 ```{r}
 library(data.table)
+library(dplyr)
 ```
 
 ## Load patent file
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
 setwd("")
-data <- read.table(unz("foreign_priority.tsv.zip", "foreign_priority.tsv"), sep = '\t', quote = "\"'", header = TRUE)
+data <- read.delim(unz("foreign_priority.tsv.zip", "foreign_priority.tsv"), header = TRUE, quote="\"", na.strings = "")
 ```
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
 ```{r}
+head(data)
+ncol(data)
 nrow(data)
-summary(data)
+apply(data, 2, function(x) length(which(!is.na(x))))
+print(apply(data, 2, class))
+var <- data[,!sapply(data,is.numeric)]
+summarize_each(var, funs(n_distinct(., na.rm=TRUE)))
 ```
