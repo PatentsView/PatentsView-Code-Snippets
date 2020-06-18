@@ -1,5 +1,5 @@
 ---
-title: "Assignee.tsv read-in and summary"
+title: "inventor_gender.tsv read-in and summary"
 output: html_document
 ---
 
@@ -7,12 +7,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(data.table)
 #TODO: change directory as necessary
-setwd("//dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+setwd("")
 ```
 
 
 ```{r load data}
-data<- read.delim(unz("inventor_gender.tsv.zip", "inventor_gender.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+data<- read.delim(unz(""), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
 ```
 
 ## Including Plots
@@ -25,9 +25,7 @@ nrow(data)
 ncol(data)
 str(data)
 summary(data)
-missing<-sapply(data, function(x) sum(is.na(x)))
-#View(missing)
-#View(data)
+
 
 ```
 

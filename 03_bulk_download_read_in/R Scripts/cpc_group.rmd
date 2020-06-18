@@ -1,5 +1,5 @@
 ---
-title: "read in application.tsv and summarize"
+title: "read in cpc_group.tsv and summarize"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(data.table)
 #TODO: change directory as needed
-setwd("//dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+setwd("")
 ```
 
 ##Loads in data
@@ -22,8 +22,7 @@ head(data)
 nrow(data)
 ncol(data)
 str(data)
-sumaary(data)
-missing<-sapply(data, function(x) sum(is.na(x)))
-#View(missing)
+summary(data)
+
 
 ```
