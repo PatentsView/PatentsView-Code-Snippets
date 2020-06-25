@@ -12,7 +12,7 @@ setwd("")
 
 ##Load in data
 ```{r load data}
-data<- read.delim(unz("cpc_subgroup.tsv.zip", "cpc_subgroup.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+data<- read.delim(unz("cpc_subgroup.tsv.zip", "cpc_subgroup.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
 ```
 
 ## Display summary of data

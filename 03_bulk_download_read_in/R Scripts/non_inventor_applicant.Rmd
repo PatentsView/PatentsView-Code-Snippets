@@ -13,7 +13,7 @@ setwd("")
 ##Loads in data
 
 ```{r load data}
-data<- read.delim(unz("non_inventor_applicant.tsv.zip", "non_inventor_applicant.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+data<- read.delim(unz("non_inventor_applicant.tsv.zip", "non_inventor_applicant.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
 ```
 
 ## displays summary of data

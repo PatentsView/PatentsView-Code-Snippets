@@ -12,7 +12,7 @@ setwd("")
 
 
 ```{r load data}
-data<- read.delim(unz(""), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="", fill = FALSE)
+data<- read.delim(unz("inventor_gender.tsv.zip", "inventor_gender.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
 ```
 
 ## Including Plots
