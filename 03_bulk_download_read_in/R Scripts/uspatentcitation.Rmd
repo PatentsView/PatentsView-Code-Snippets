@@ -1,41 +1,26 @@
 ---
-title: "Citations made to US granted patents by US patents"
+title: "Read-in script and summary information for us patent citation data"
 output: html_document
 ---
+
 ```{r}
 library(data.table)
-```
-
-## Setting up directory and unzipping file
-Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
-```{r}
-directory = ""
-setwd(directory)
-unzip("uspatentcitation.tsv.zip", exdir = directory)
+library(vroom)
 ```
 
 ## Load patent file
-Note: it might take some time to read the file due to its size.
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
 ```{r}
-start_time <- Sys.time()
-chunk <- 1000000
-count = 0
-n_obs = 0
-repeat{
-  data <- fread(paste(directory,"/uspatentcitation.tsv", sep = "", collapse = NULL), sep = '\t', quote = "\"", nrows =  chunk, skip = chunk*count,  header = TRUE)
-  n_obs = n_obs + nrow(data)
-  count = count + 1
-  if (nrow(data) < chunk) {
-    break
-}
-}
-end_time <- Sys.time()
-print(end_time-start_time)
+setwd("")
+data <- vroom::vroom(unz("uspatentcitation.tsv.zip", "uspatentcitation.tsv"), 
+                     delim = "\t", col_names = TRUE, na = c("", " ", "na", "NA", "N/A"))
 ```
 
-## Print information on the dataset: Number of observations, column variables, data type for each variable, and summary statistics for numerical variables.
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and number of distinct values for non-numeric variables.
 ```{r}
-data <- fread(paste(directory,"/uspatentcitation.tsv", sep = "", collapse = NULL), sep = '\t', nrows =  1000000, skip = 0,  header = TRUE)
-print(n_obs)
-sapply(data, class)
+head(data)
+ncol(data)
+nrow(data)
+str(data)
+summary(data, na.rm=TRUE)
 ```
