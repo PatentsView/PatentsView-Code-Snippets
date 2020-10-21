@@ -1,26 +1,26 @@
 ---
-title: "Read-in script for Metadata table for many-to-many relationships"
+title: "Read-in script and summary information for patent_inventor data"
 output: html_document
 ---
+
 ```{r}
 library(data.table)
-library(dplyr)
+library(vroom)
 ```
 
 ## Load patent file
 Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
-Note: it might take some time to read the file due to its size.
 ```{r}
 setwd("")
-data <- read.delim(unz("patent_inventor.tsv.zip", "patent_inventor.tsv"), header = TRUE, comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE, na.strings = "")
+data <- vroom::vroom(unz("patent_inventor.tsv.zip", "patent_inventor.tsv"), 
+                     delim = "\t", col_names = TRUE, na = c("", " ", "na", "NA", "N/A"))
 ```
+
 ## Print information on the dataset: Number of observations, column variables, data type for each variable, and number of distinct values for non-numeric variables.
 ```{r}
 head(data)
 ncol(data)
 nrow(data)
-apply(data, 2, function(x) length(which(!is.na(x))))
-print(apply(data, 2, class))
-var <- data[,!sapply(data,is.numeric)]
-summarize_each(var, funs(n_distinct(., na.rm=TRUE)))
+str(data)
+summary(data, na.rm=TRUE)
 ```

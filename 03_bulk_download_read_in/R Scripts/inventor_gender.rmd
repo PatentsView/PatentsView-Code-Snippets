@@ -1,32 +1,26 @@
 ---
-title: "inventor_gender.tsv read-in and summary"
+title: "Read-in script and summary information for inventor_gender data"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
 library(data.table)
-#TODO: change directory as necessary
+library(vroom)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+```{r}
 setwd("")
+data <- vroom::vroom(unz("inventor_gender.tsv.zip", "inventor_gender.tsv"), 
+                     delim = "\t", col_names = TRUE, na = c("", " ", "na", "NA", "N/A"))
 ```
 
-
-```{r load data}
-data<- read.delim(unz("inventor_gender.tsv.zip", "inventor_gender.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r view data}
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and number of distinct values for non-numeric variables.
+```{r}
 head(data)
-nrow(data)
 ncol(data)
+nrow(data)
 str(data)
-summary(data)
-
-
+summary(data, na.rm=TRUE)
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

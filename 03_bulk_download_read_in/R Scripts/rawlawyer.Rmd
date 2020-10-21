@@ -1,29 +1,26 @@
 ---
-  title: "read in rawlawyer.tsv and summarize"
+title: "Read-in script and summary information for raw lawyer data"
 output: html_document
 ---
-  #### Note: This HTML document was last generated on `r Sys.Date()`
-  
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r}
 library(data.table)
-#TODO: change directory as needed
+library(vroom)
+```
+
+## Load patent file
+Please include the folder path of the file. Ex: setwd("C:/Users/johnsmith/Downloads")
+```{r}
 setwd("")
-```
-##Loads in data
-
-```{r load data}
-data<- read.delim(unz("rawlawyer.tsv.zip", "rawlawyer.tsv"), header=TRUE, sep ="\t", comment.char="#",  stringsAsFactors = FALSE, quote="\"", fill = FALSE)
+data <- vroom::vroom(unz("rawlawyer.tsv.zip", "rawlawyer.tsv"), 
+                     delim = "\t", col_names = TRUE, na = c("", " ", "na", "NA", "N/A"))
 ```
 
-## displays summary of data
-
-```{r view data}
+## Print information on the dataset: Number of observations, column variables, data type for each variable, and number of distinct values for non-numeric variables.
+```{r}
 head(data)
-nrow(data)
 ncol(data)
+nrow(data)
 str(data)
-summary(data)
-
-
+summary(data, na.rm=TRUE)
 ```
