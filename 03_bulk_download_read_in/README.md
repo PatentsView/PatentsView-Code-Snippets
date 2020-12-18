@@ -7,11 +7,16 @@ Due to changes in the structure of the Bulk Download files, the PatentsView team
 See the file format settings below:  
 | Table            | File(s)                       | Data Contains Line Break | Field Separator | Quote Settings            | Quote Character |
 |------------------|-------------------------------|--------------------------|-----------------|---------------------------|-----------------|
-| claims           | Yearly files from 1976 - 2005 | No                       | \t              | Non Numeric Fields Quoted | "               |
-| claims           | Yearly files from 2005 - 2020 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| claims           | Yearly files from 1976 - 2000 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| claims           | 2001 data file                | No                       | \t              | Non Numeric Fields Quoted | "               |
+| claims           | Yearly files from 2002 - 2020 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| brf_sum_text     | Yearly files 1976 - 2000      | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| brf_sum_text     | Yearly files 2005 - 2020      | Yes                      | \t              | Non Numeric Fields Quoted | "               |
 | brf_sum_text     | Single bulk file              | Yes                      | \t              | Non Numeric Fields Quoted | "               |
-| detail_desc_text | 2020 data file                | Yes                      | \t              | Non Numeric Fields Quoted | "               |
-| detail_desc_text | 2019 data file                | No                       | \t              | Non Numeric Fields Quoted | "               |
-| detail_desc_text | Yearly files from 1976 - 2018 | No                       | \t              | Unquoted                  | N/A             |
+| detail_desc_text | Yearly files from 1976 - 2000 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| detail_desc_text | Yearly files from 2001 - 2004 | No                       | \t              | Non Numeric Fields Quoted | unquoted        |
+| detail_desc_text | Yearly files from 2005 - 2000 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| draw_desc_text   | Yearly files from 1976 - 2000 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
+| draw_desc_text   | Yearly files from 2005 - 2020 | Yes                      | \t              | Non Numeric Fields Quoted | "               |
 | draw_desc_text   | Single bulk file              | No                       | \t              | Non Numeric Fields Quoted | "               |
 | all other tables | Single bulk file              | No                       | \t              | Non Numeric Fields Quoted | "               |
