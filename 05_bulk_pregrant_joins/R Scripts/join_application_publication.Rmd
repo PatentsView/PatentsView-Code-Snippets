@@ -19,10 +19,14 @@ library(data.table)
 # set directory ex: setwd("/Users/username/Downloads")
 setwd("")
 
-# The application file is too large to unzip in R
-app <- fread("application.tsv", sep="\t", na.strings=c("", " ", "na", "NA", "N/A", NA))
+# The application file may be too large to read into memory on some computers
+# If this is the case you can split the file into smaller pieces like so:
+# app <- fread("application.tsv", sep="\t", nrows = 100000, skip = 0) 
+# where nrows is the number of rows to read from the file and skip is the number 
+# of rows to skip from the start of the file
 
-pub <- fread("publication.tsv", sep="\t", na.strings=c("", " ", "na", "NA", "N/A", NA))
+app <- fread("application.tsv", sep="\t")
+pub <- fread("publication.tsv", sep="\t")
 ```
 ## 3. Rename columns that are the same across the two files
 ```{r}
