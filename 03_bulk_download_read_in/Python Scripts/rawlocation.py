@@ -11,18 +11,21 @@ import numpy as np
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 
+# Specifies column types
+dt = {'id': 'str', 'location_id': 'str', 'city': 'str', 'state': 'str', 'country': 'str', 'latlong': 'str'}
+
 file_name = "rawlocation.tsv.zip"
 f_name = "rawlocation.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
-df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC)
+df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC, dtype=dt)
 
 chunksize = 15*(10 ** 5)
 count = 1
 n_obs = 0
 dtype={'sequence': int}
-for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting= csv.QUOTE_NONNUMERIC):
+for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting= csv.QUOTE_NONNUMERIC, dtype=dt):
     print('processing chunk: ' + str(count))
     n_obs += len(df)
     count += 1

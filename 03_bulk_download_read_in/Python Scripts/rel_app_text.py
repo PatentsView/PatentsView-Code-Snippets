@@ -11,12 +11,15 @@ import numpy as np
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 
+# Specifies column types
+dt = {'uuid': 'str', 'patent_id': 'str', 'text': 'str'}
+
 file_name = "rel_app_text.tsv.zip"
 f_name = "rel_app_text.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
-df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC)
+df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC, dtype=dt)
 
 # Print first five observations
 df.head()

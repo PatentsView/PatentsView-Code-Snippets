@@ -11,12 +11,15 @@ import numpy as np
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 
+# Specifies column types
+dt = {'uuid': 'str', 'patent_id': 'str', 'latin_name': 'str', 'variety': 'str'}
+
 file_name = "botanic.tsv.zip"
 f_name = "botanic.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
-df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC)
+df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting = csv.QUOTE_NONNUMERIC, dtype=dt)
 
 chunksize = 15*(10 ** 5)
 count = 1

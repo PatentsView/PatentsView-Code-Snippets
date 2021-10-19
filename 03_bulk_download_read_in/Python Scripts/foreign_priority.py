@@ -9,13 +9,17 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
-os.chdir("//Dc1fs/dc1ehd/share/Science Policy Portfolio/PatentsView IV/Documentation/Tables/20200331")
+os.chdir("")
+
+# Specifies column types
+dt = {'uuid': 'str', 'patent_id': 'str', 'sequence': 'int', 'kind': 'str', 'number': 'str', 'date': 'str', 'country': 'str', 'country_transformed': 'str'}
+
 file_name = "foreign_priority.tsv.zip"
 f_name = "foreign_priority.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
-df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting=csv.QUOTE_NONNUMERIC)
+df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting=csv.QUOTE_NONNUMERIC, dtype=dt)
 # Print first five observations
 print(df.head())
 # Print summary of data: number of columns, observations, and each variable data type
