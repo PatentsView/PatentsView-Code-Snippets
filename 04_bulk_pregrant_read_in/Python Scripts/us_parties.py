@@ -11,6 +11,9 @@ import numpy as np
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 
+# Specifies column types
+dt ={'id': 'str', 'document_number': 'str', 'name_first': 'str', 'name_last': 'str', 'organization': 'str', 'type': 'str', 'designation': 'str', 'sequence': 'int', 'rawlocation_id': 'str', 'city': 'str', 'state': 'str', 'country': 'str'}
+
 file_name = "us_parties.tsv.zip"
 f_name = "us_parties.tsv"
 # Selecting the zip file.
@@ -20,7 +23,7 @@ chunksize = 10 ** 4
 count = 1
 n_obs = 0
 final = []
-for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC):
+for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC, dtype=dt):
     print('processing chunk: ' + str(count))
     n_obs += len(df)
     count += 1

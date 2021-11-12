@@ -10,6 +10,10 @@ pd.set_option('display.max_columns', None)
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
+
+# Specifies column types
+dt ={'id': 'str', 'document_number': 'str', 'pct_doc_number': 'str', 'country': 'str', 'date': 'str', 'us_371c124_date': 'str', 'us_371c12_date': 'str', 'kind': 'str', 'doc_type': 'str'}
+
 file_name = "pct_data.tsv.zip"
 f_name = "pct_data.tsv"
 # Selecting the zip file.
@@ -19,7 +23,7 @@ chunksize = 10 ** 4
 count = 1
 n_obs = 0
 final = []
-for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC):
+for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC, dtype=dt):
     print('processing chunk: ' + str(count))
     n_obs += len(df)
     count += 1

@@ -1,20 +1,20 @@
-#Read-in script for 2020 brief summary text
+#Read-in script for 2021 Claims Data
+
 # Importing necessary packages.
 import os
 import zipfile as zip
 import pandas as pd
 import csv
 import numpy as np
-
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
 
 # Specifies column types
-dt = {'id': 'str', 'document number': 'str', 'text': 'str'}
+dt ={'id': 'str', 'document number': 'str', 'text': 'str', 'dependent': 'str', 'sequence': 'int', 'num': 'str'}
 
-file_name = "brf_sum_text_2020.tsv.zip"
-f_name = "brf_sum_text_2020.tsv"
+file_name = "claim_2021.tsv.zip"
+f_name = "claim_2021.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.

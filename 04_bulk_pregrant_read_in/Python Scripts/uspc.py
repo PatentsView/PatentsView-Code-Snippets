@@ -8,6 +8,10 @@ import csv
 # Set up file path:
 # Please include the folder path of the file you are reading. Ex: os.chdir("C:/Users/johnsmith/Downloads")
 os.chdir("")
+
+# Specifies column types
+dt ={'id': 'str', 'document number': 'str', 'mainclass_id': 'str', 'subclass_id': 'str', 'sequence': 'int'}
+
 # Selecting the zip file.
 file_name = "uspc.tsv.zip"
 f_name = "uspc.tsv"
@@ -17,7 +21,7 @@ chunksize = 10 ** 4
 count = 1
 n_obs = 0
 final = []
-for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC):
+for df in pd.read_csv(zf.open(f_name), delimiter="\t", chunksize=chunksize, quoting=csv.QUOTE_NONNUMERIC, dtype=dt):
     print('processing chunk: ' + str(count))
     n_obs += len(df)
     count += 1

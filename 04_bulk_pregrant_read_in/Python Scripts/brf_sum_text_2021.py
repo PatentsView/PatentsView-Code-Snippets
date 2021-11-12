@@ -1,4 +1,4 @@
-#Read-in script for 2020 brief summary text
+#Read-in script for 2021 brief summary text
 # Importing necessary packages.
 import os
 import zipfile as zip
@@ -13,8 +13,8 @@ os.chdir("")
 # Specifies column types
 dt = {'id': 'str', 'document number': 'str', 'text': 'str'}
 
-file_name = "brf_sum_text_2020.tsv.zip"
-f_name = "brf_sum_text_2020.tsv"
+file_name = "brf_sum_text_2021.tsv.zip"
+f_name = "brf_sum_text_2021.tsv"
 # Selecting the zip file.
 zf = zip.ZipFile(file_name)
 # Reading the selected file in the zip.
