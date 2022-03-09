@@ -4,6 +4,7 @@ The code scripts in this folder walk through the joining of various bulk downloa
 
 | Script             | Description           | 
 | ---    			 |---					 |
+| country_ipc_selection.R | *Demonstrates using ipc and location to select patents* |
 | join_assignee.Rmd  | *Describes joining of assignee, location, and patent tables*|
 | join_assignee.html |	*HTML version of join_assignee.Rmd*|
 | join_inventor.Rmd  | *Describes joining of inventor, location, and patent tables*|
