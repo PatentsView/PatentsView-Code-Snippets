@@ -11,7 +11,7 @@ os.chdir("")
 # Selecting the zip file.
 file_name = "pg_inventor_not_disambiguated.tsv.zip"
 f_name = "pg_inventor_not_disambiguated.tsv"
-zf = zip.ZipFile(file_name)
+with zip.ZipFile(file_name) as zf:
 chunksize = 10 ** 6
 count = 1
 n_obs = 0

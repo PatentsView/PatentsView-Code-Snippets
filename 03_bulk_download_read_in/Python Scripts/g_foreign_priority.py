@@ -14,9 +14,10 @@ os.chdir("")
 file_name = "g_foreign_priority.tsv.zip"
 f_name = "g_foreign_priority.tsv"
 # Selecting the zip file.
-zf = zip.ZipFile(file_name)
+with zip.ZipFile(file_name) as zf:
 # Reading the selected file in the zip.
-df = pd.read_csv(zf.open(f_name), delimiter="\t", quoting=csv.QUOTE_NONNUMERIC)
+    with zf.open(f_name) as openfile: 
+        df = pd.read_csv(openfile, delimiter="\t", quoting = csv.QUOTE_NONNUMERIC)
 # Print first five observations
 print(df.head())
 # Print summary of data: number of columns, observations, and each variable data type
