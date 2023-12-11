@@ -12,4 +12,4 @@ List of Resources:
 | 04_bulk_pregrant_read_in| *Provides code examples for reading in bulk pregrant data download files using R and Python*|
 | 05_bulk_pregrant_joins| *Provides code examples for merging two tables with a shared key using R and Python*|
 | 06_mysql_text_load_in| *Provides code examples for reading bulk text data files into a user's own mysql database*|
-| 07_Elasticsearch_API_demo| *Provides an example Jupyter Notebook demonstrating how to request and read data from the PatentsView Elasticsearch API (currently in beta) in Python*|
+| 07_Search_API_demo| *Provides an example Jupyter Notebook demonstrating how to request and read data from the PatentsView Search API (currently in beta) in Python*|
