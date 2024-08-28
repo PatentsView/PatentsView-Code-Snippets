@@ -1,0 +1,146 @@
+---
+title: "The PatentsView PatentSearch API Tutorial"
+author: "Jack Butler and the PatentsView Team"
+date: "August 27, 2024"
+output: rmarkdown::github_document
+---
+
+# The PatentsView PatentSearch API Tutorial
+### For detailed information on using the PatentsView API, see:  
+* [PatentSearch API information page](https://patentsview.org/apis/api-endpoints/patentsbeta)  
+* [PatentSearch API Query Language](https://patentsview.org/apis/api-query-language)  
+* [Swagger API Documentation and test page](https://search.patentsview.org/swagger-ui/)
+
+```{r}
+library(httr)
+library(jsonlite)
+```
+
+An API key is required to view results from the PatentSearch API.  
+An API key can be requested through the PatentsView Service Desk:  
+https://patentsview-support.atlassian.net/servicedesk/customer/portals
+
+```{r}
+api_key <- "my_API_key"
+```
+
+Responses from the PatentSearch API are formatted as JSON and always contain the key **"error"** .  
+Successful responses will also contain the keys:  
+  
+**"count"** _(the number of records included in the response)_,  
+  
+**"total_hits"** _(the total number of records in the PatentsView data matching the parameters of the request)_,  
+  
+and another key containing the actual record data which is specific to each endpoint.  
+The function below converts the endpoint to the expected results key.
+
+```{r}
+special_keys <- list(
+  'api/v1/ipc' = 'ipcr',
+  'api/v1/wipo' = 'wipo',
+  'api/v1/publication/rel_app_text' = 'rel_app_text_publications'
+)
+
+response_key <- function(endpoint) {
+  # Given the API endpoint contacted, returns the json key for the data returned by the API.
+  # In most cases, this is the plural of the term at the end of the endpoint URL.
+  endpoint <- sub('/$', '', endpoint)
+  leaf <- tail(strsplit(endpoint, '/')[], 1)
+  if (leaf %in% names(special_keys)) {
+    return(special_keys[[leaf]])
+  } else if (grepl('s$', leaf)) {
+    return(paste0(leaf, 'es'))
+  } else {
+    return(paste0(leaf, 's'))
+  }
+}
+```
+### Identify and set your endpoint of interest 
+available endpoints:  
+
+| Endpoint Name | Endpoint Extension | single-ID GET? |
+| ---: | :--- | :--- |
+| Assignee | api/v1/assignee | assignee_id |
+| Attorney | api/v1/patent/attorney | attorney_id |
+| Inventor | api/v1/inventor | inventor_id |
+| Location | api/v1/location | location_id |
+| CPC Class | api/v1/cpc_class | cpc_class |
+| CPC Subclass | api/v1/cpc_subclass | cpc_subclass |
+| CPC Group | api/v1/cpc_group | cpc_group |
+| IPC | api/v1/ipc | No |
+| USPC Mainclass | api/v1/uspc_mainclass | uspc_mainclass_id |
+| USPC Subclass | api/v1/uspc_subclass | uspc_subclass_id |
+| WIPO | api/v1/wipo | wipo_id |
+| Patent | api/v1/patent | patent_id |
+| Foreign Citation | api/v1/patent/foreign_citation | No |
+| Other Reference | api/v1/patent/otherreference | No |
+| Related Application Text | api/v1/patent/rel_app_text | No |
+| US Application Citation | api/v1/patent/us_application_citation | patent_id |
+| US Patent Citation | api/v1/patent/us_patent_citation | patent_id |
+| Brief Summary Text | api/v1/brf_sum_text | No |
+| Claims | api/v1/claim | No |
+| Detailed Description Text | api/v1/detail_desc_text | No |
+| Drawing Description Text | api/v1/draw_desc_text | No |
+| Publication | api/v1/publication | document_number |
+| Publication Related Application Text | api/v1/publication/rel_app_text | No |
+  
+See [Swagger API Documentation and test page](https://search.patentsview.org/swagger-ui/) for full details  
+
+```{r}
+# the base URL is the same for all endpoints
+base_url <- 'https://search.patentsview.org' 
+
+# set the endpoint that matches your query from the Swagger page or the list above. for example,
+endpoint <- 'api/v1/patent'
+```
+
+### constructing your query:  
+Parameters:
+| param | name | object type | default |  
+| ---: | :--- | :--- | :--- |  
+| q | query | dict | None (required parameter) |  
+| f | fields | list | differs by endpoint; see [Swagger page](https://search.patentsview.org/swagger-ui/) |  
+| o |  options | dict | "size"\*: 100, "after": None (optional) |  
+| s | sort | list of dict | differs by endpoint; see [Swagger page](https://search.patentsview.org/swagger-ui/) |  
+  
+See more detail on query syntax at the [PatentsView API Query Language](https://patentsview.org/apis/api-query-language) Page  
+  
+*\*Note: the maximum number of results returned for a single query is 1000. larger values for "size" will be accepted, but only 1000 results will be returned*
+
+```{r}
+# any of these except for "q" can be omitted
+param_dict <- list(
+  f = c("patent_id", "patent_title", "patent_date"),
+  o = list(size = 200),
+  q = list(patent_id = c("D345393", "10905426", "11172927")),
+  s = list(list(patent_id = "asc"))
+)
+```
+
+### GET requests:  
+parameters provided as part of the url after the endpoint, separated by "&"
+
+```{r}
+param_string <- paste0(names(param_dict), "=", sapply(param_dict, toJSON, auto_unbox = TRUE), collapse = "&")
+# note the use of jsonlite::toJSON to ensure strings are surrounded by double quotes instead of single
+# the api will not accept single quotes
+query_url <- paste0(base_url, "/", gsub("/$", "", endpoint), "/?", param_string)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+
+
