@@ -15,4 +15,4 @@ jobs:
           python-version: '3.13'
       - run: |
           pip install pyyaml
-          python 03_bulk_download_read_in/tests/test_source_urls.py 
+          python tests/test_source_urls.py 
