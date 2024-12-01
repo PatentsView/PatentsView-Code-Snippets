@@ -15,4 +15,4 @@ jobs:
           python-version: '3.13'
       - run: |
           pip install pyyaml
-          python tests/test_source_urls.py 
+          python tests/test_ingest_sources.py 
