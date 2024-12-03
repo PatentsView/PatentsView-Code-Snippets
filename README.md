@@ -17,7 +17,9 @@ Python and R examples for working with:
 
 ## Dependencies
 
-Python and R dependencies are specified in the `environment.yml` file. Using the [**conda**](https://docs.conda.io/projects/conda/en/latest/index.html) environment manager, you can install dependencies and activate the environment by running:
+Python and R dependencies are specified in the `environment.yml` file and in individual code example files. 
+
+You can install all dependencies using the [**conda**](https://docs.conda.io/projects/conda/en/latest/index.html) environment manager:
 ```bash
 conda env update
 conda activate pv-code-examples

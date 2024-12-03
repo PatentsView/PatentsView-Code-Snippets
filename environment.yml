@@ -6,7 +6,8 @@ channels:
 dependencies:
   # R dependencies
   - r-base=4.4
-  - r-essentials
+  - r-tidyverse=2.0.0
+  - r-vroom=1.6
 
   # Python dependencies
   - python=3.13
