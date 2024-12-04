@@ -6,10 +6,10 @@ from testbook import testbook
 # Change the working directory to the Data Downloads folder for all tests in this file.
 @pytest.fixture(autouse=True)
 def change_test_dir(monkeypatch):
-    monkeypatch.chdir('Data Downloads')
+    monkeypatch.chdir('data-downloads')
 
 
-@testbook('Data Downloads/0-introduction.ipynb', execute=True)
+@testbook('data-downloads/0-introduction.ipynb', execute=True)
 def test_0_introduction(nb):
     ...  # Just check that notebook runs without error.
 
@@ -17,7 +17,7 @@ def test_0_introduction(nb):
 def test_sources():
     with open("sources.yml") as file:
         sources = yaml.safe_load(file)
-    
+
     for data in [sources['granted'], sources['pre-grant']]:
         for source in data.values():
             database = source['database']
