@@ -9,7 +9,7 @@ def change_test_dir(monkeypatch):
     monkeypatch.chdir('data-downloads')
 
 
-@testbook('data-downloads/0-introduction.ipynb', execute=True)
+@testbook('data-downloads/0-getting-started.ipynb', execute=True)
 def test_0_introduction(nb):
     ...  # Just check that notebook runs without error.
 
