@@ -1,0 +1,17 @@
+name: Pytest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-pandas-read-in:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: environment.yml
+          activate-environment: "pv-code-examples"
+      - run: pytest

@@ -7,6 +7,7 @@ Python and R examples for working with:
 ## Examples List
 
 ### Bulk Data Downloads
+- Basic tips and tricks
 - Loading granted and pre-grant patent data tables
   - Python examples
   - R examples
@@ -17,9 +18,7 @@ Python and R examples for working with:
 
 ## Dependencies
 
-Python and R dependencies are specified in the `environment.yml` file and in individual code example files. 
-
-You can install all dependencies using the [**conda**](https://docs.conda.io/projects/conda/en/latest/index.html) environment manager:
+Python and R dependencies are specified in the [`environment.yml`](environment.yml) file and in individual code example files. You can install all dependencies using [**conda**](https://docs.conda.io/projects/conda/en/latest/index.html):
 ```bash
 conda env update
 conda activate pv-code-examples
