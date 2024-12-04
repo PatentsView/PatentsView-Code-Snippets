@@ -13,4 +13,5 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           environment-file: environment.yml
+          activate-environment: "pv-code-examples"
       - run: conda activate pv-code-examples && pytest
