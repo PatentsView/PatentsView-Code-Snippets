@@ -6,7 +6,7 @@ channels:
 dependencies:
   # System dependencies
   - nushell=0.99
-  - duckdb=1.1
+  - duckdb-cli=1.1
 
   # R dependencies
   - r-base=4.4
