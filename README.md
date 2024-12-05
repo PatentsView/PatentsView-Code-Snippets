@@ -1,3 +1,5 @@
+[![Pytest](https://github.com/PatentsView/PatentsView-Code-Snippets/actions/workflows/pytest.yml/badge.svg)](https://github.com/PatentsView/PatentsView-Code-Snippets/actions/workflows/pytest.yml)
+
 # PatentsView Code Examples
 
 Examples working with [PatentsView's bulk data downloads](https://patentsview.org/download/data-download-tables) and [PatentsView's PatentSearch API](https://search.patentsview.org/docs/2024/11/06/2.2-release).
