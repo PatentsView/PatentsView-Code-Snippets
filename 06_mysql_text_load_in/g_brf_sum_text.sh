@@ -1,1 +1,0 @@
-mysql --defaults-file=resources/sql.conf --local-infile=1 -e "LOAD DATA LOCAL INFILE '/path/to/file/g_brf_sum_text_2022.tsv' INTO TABLE patent_text.brf_sum_text_2022_test character set utf8mb4  FIELDS TERMINATED BY '\t' ENCLOSED BY '\"'  LINES TERMINATED BY '\n' IGNORE 1 LINES;"

@@ -1,15 +1,21 @@
-# PatentsView-Code-Snippets
+[![Pytest](https://github.com/PatentsView/PatentsView-Code-Snippets/actions/workflows/pytest.yml/badge.svg)](https://github.com/PatentsView/PatentsView-Code-Snippets/actions/workflows/pytest.yml)
 
-The code scripts in this repository are for general PatentsView users and serve a variety of purposes.
+# PatentsView Code Examples
 
-List of Resources:
+Examples working with [PatentsView's bulk data downloads](https://patentsview.org/download/data-download-tables) and [PatentsView's PatentSearch API](https://search.patentsview.org/docs/2024/11/06/2.2-release).
 
-| Folder | Description | 
-| --- |--- |
-| 01_bulk_download_example_joins| *Provides code examples for joining bulk download files*|
-| 02_claims_examples| *Provides an example Jupyter Notebook demonstrating how to read claims data files in Python* |
-| 03_bulk_download_read_in| *Provides code examples for reading in bulk download files using R and Python*|
-| 04_bulk_pregrant_read_in| *Provides code examples for reading in bulk pregrant data download files using R and Python*|
-| 05_bulk_pregrant_joins| *Provides code examples for merging two tables with a shared key using R and Python*|
-| 06_mysql_text_load_in| *Provides code examples for reading bulk text data files into a user's own mysql database*|
-| 07_PatentSearch_API_demo| *Provides an example Jupyter Notebook demonstrating how to request and read data from the PatentsView PatentSearch API in Python*|
+## Examples List
+
+### Bulk Data Downloads
+- [Getting Started With PatentsView Data Downloads](data-downloads/0-getting-started.ipynb)
+
+### PatentSearch API
+- [PatentSearch API Demo](patentsearch/0-patentsearch-api-demo.ipynb)
+  
+## Dependencies
+
+Python and R dependencies are specified in the [`environment.yml`](environment.yml) file and in individual code example files. You can install all dependencies using [**conda**](https://docs.conda.io/projects/conda/en/latest/index.html):
+```sh
+conda env update
+conda activate pv-code-examples
+```

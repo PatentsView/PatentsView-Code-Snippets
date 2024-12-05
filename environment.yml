@@ -1,0 +1,35 @@
+name: pv-code-examples
+
+channels: 
+  - conda-forge
+
+dependencies:
+  # System dependencies
+  - nushell=0.99
+  - duckdb-cli=1.1
+
+  # R dependencies
+  - r-base=4.4
+  - r-tidyverse=2.0
+  - r-vroom=1.6
+  - r-duckplyr=0.4
+
+  # Python dependencies
+  - python=3.13
+  - pip
+  - pip:
+    - jupyter==1.1.*
+    - ipykernel==6.29.*
+    - pandas==2.2.*
+    - duckdb==1.1.*
+    - fsspec==2024.10.*
+    - pyyaml==6.0.*
+
+    # R in Jupyter notebook
+    - rpy2==3.5.*
+
+    # Development
+    - black
+    - isort
+    - pytest
+    - testbook

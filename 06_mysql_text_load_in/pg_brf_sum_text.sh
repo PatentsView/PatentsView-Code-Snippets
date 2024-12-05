@@ -1,1 +1,0 @@
-mysql --defaults-file=resources/sql.conf --local-infile=1 -e "LOAD DATA LOCAL INFILE '/path/to/file/pg_brf_sum_text_2022.tsv' INTO TABLE pgpubs_text.brf_sum_text_2022 character set utf8mb4 FIELDS TERMINATED BY '\t' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;"
