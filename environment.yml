@@ -29,7 +29,7 @@ dependencies:
     - rpy2==3.5.*
 
     # Development
-    - black
+    - ruff
     - isort
     - pytest
     - testbook
